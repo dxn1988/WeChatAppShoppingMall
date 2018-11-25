@@ -1,0 +1,15 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="item-img">
+    <image src="{{itemDetail.img}}" mode="aspectFill"></image>
+  </view>
+  <view class="item-info">
+    <view class="item-price">￥{{itemDetail.price}}</view>
+    <view class="item-name">{{itemDetail.name}}</view>
+    <view class="item-desc">{{itemDetail.desc}}</view>
+  </view>
+  <van-goods-action>
+    <van-goods-action-button text="加入购物车" type="primary" bind:click="addToCart" />
+  </van-goods-action>
+</view>
+

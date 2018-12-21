@@ -2,6 +2,8 @@ var app = getApp()
 
 Page({
   data: {
+    currentPage: 1,
+    totalPage: 0,
     items: [
       {
         id: 1,

@@ -1,0 +1,4 @@
+<view>
+  授权页面
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="save-btn">授权登录</button>
+</view>

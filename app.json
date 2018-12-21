@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/mall/index/index",
     "pages/index/index",
+    "pages/mall/index/index",
     "pages/cart/cart",
     "pages/account/index/index",
     "pages/logs/logs",
-    "pages/mall/item-detail/index"
+    "pages/mall/item-detail/index",
+    "pages/auth/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

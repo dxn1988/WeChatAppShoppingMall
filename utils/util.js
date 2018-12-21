@@ -21,5 +21,5 @@ module.exports = {
 var app = getApp()
 
 function addToCart(item) {
-  
+  app.globalData.cart = []
 }

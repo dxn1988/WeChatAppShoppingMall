@@ -26,6 +26,17 @@
   z-index: -1;
 }
 
+.empty-img {
+  height: 160px;
+  width: 100%;
+  z-index: -1;
+  background-color: #B0BEC5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ECEFF1;
+}
+
 .item-name {
   width: 100%;
   padding: 0 10px 0 10px;
@@ -52,6 +63,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.price-row {
+  font-size: 15px;
+}
+.price-num {
+  color: #FF5722;
+  font-size: 1.5em;
+}
+.price-unit {
+  color: #FF5722;
+  font-size: 0.8em;
 }
 
 .add-to-cart-box {
@@ -93,4 +116,11 @@
   line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.no-more-goods {
+  text-align: center;
+  font-size: 24rpx;
+  padding-bottom:48rpx; 
+  color: #999;
 }

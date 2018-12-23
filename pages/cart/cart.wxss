@@ -8,3 +8,31 @@
   font-size: 15px;
   color: #9E9E9E;
 }
+
+.empty-content {
+  text-align: center;
+}
+
+.empty-icon {
+  display: block;
+  width: 100%;
+}
+
+.item-row {
+  margin-bottom: 10px;
+}
+
+.empty-img {
+  width: 90px;
+  height: 90px;
+  background-color: #B0BEC5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ECEFF1;
+}
+
+.thumb {
+  width: 90px;
+  height: 90px;
+}

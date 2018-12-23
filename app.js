@@ -38,7 +38,8 @@ App({
     appid: "wxa746d117a68b1338",
     cart: [],
     allItems: [],
-    apiBase: 'http://127.0.0.1:8080/api'
+    apiBase: 'http://10.0.0.3:8080/api',
+    hostBase: 'http://10.0.0.3:8080'
   },
   gotoIndex: function() {
     wx.redirectTo({

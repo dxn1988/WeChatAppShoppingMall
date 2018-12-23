@@ -1,22 +1,19 @@
 <view class="wrapper">
   <view wx:for="{{items}}" wx:key="id" class="item-box" bindtap="gotoDetail" data-id="{{item.id}}">
     <view class="item-top">
-      <image src="{{item.img}}" mode="aspectFill"></image>
+      <image wx:if="{{item.photoPath !== ''}}" src="{{'http://10.0.0.3:8080' + item.photoPath}}" mode="aspectFill"></image>
+      <view wx:else class="empty-img">暂无图片</view>
       <view class="item-name">
         <text>{{item.name}}</text>
       </view>
     </view>
     <view class="item-middle">
-      <view>团购价 ￥{{item.price}} / {{item.unit}}</view>
-      <view class="add-to-cart-box" bindtap="addToCart" data-id="{{item.id}}">
-        <view class="add-btn">
-          <image src="../../../images/icon/add.png" mode="aspectFill"></image>
-        </view>
-        <text>加入购物车</text>
-      </view>
+      <view class="price-row">团购价 <text class="price-num">￥{{item.price}}</text><text class="price-unit"> / {{item.itemUnit}}</text></view>
+      <van-button round type="default" size="small" bind:click="" data-id="{{item.id}}">查看详情</van-button>
     </view>
     <view class="item-bottom">
       <view class="item-desc">{{item.desc}}</view>
     </view>
   </view>
+  <view hidden="{{!showNoMoreGoods}}" class="no-more-goods">已无更多数据</view>
 </view>

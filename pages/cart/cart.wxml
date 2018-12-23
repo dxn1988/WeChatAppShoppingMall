@@ -1,10 +1,26 @@
 <view>
   <view wx:if="{{isEmpty}}" class="empty-view">
-    <view>购物车空空如也</view>
+    <view class="empty-content">
+      <view class="empty-icon">
+        <van-icon name="cart" size="100rpx" />
+      </view>
+      <view>购物车空空如也</view>
+    </view>
   </view>
   <view wx:else>
-    <view wx:for="{{items}}">
-    
+    <view wx:for="{{items}}" wx:key="{{item.id}}" class="item-row">
+      <van-card num="{{item.count}}" title="{{item.item.name}}" price="{{item.item.price}}">
+        <view slot="thumb">
+          <image wx:if="{{item.item.photoPath !== ''}}" src="{{'http://10.0.0.3:8080' + item.item.photoPath}}" class="thumb" thumb-mode="aspectFit"></image>
+          <view wx:else class="empty-img"></view>
+        </view>
+        <view slot="footer">
+          <van-button size="mini" type="danger" bind:click="removeItem" data-id="{{item.item.id}}">删除</van-button>
+          <van-button size="mini" bind:click="decreaseAmount" data-id="{{item.item.id}}">-</van-button>
+          <van-button size="mini" bind:click="increaseAmount"  data-id="{{item.item.id}}">+</van-button>
+        </view>
+      </van-card>
     </view>
+    <van-submit-bar price="{{totalPrice * 100}}" button-text="提交订单" bind:submit="submitOrder" />
   </view>
 </view>

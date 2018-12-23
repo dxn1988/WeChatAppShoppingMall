@@ -15,11 +15,32 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  addToCart: addToCart
 }
 
 var app = getApp()
 
 function addToCart(item) {
-  app.globalData.cart = []
+  if (itemIsInCart(item)) {
+    return
+  }
+  app.globalData.cart.push({
+    id: item.id,
+    item: item,
+    count: 1
+  })
+}
+
+function itemIsInCart(item) {
+  var items = app.globalData.cart
+  if (items.length === 0) {
+    return false
+  }
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].id == item.id) {
+      return true
+    }
+  }
+  return false
 }

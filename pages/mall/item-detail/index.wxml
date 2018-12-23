@@ -1,12 +1,13 @@
 <view class="container">
   <van-toast id="van-toast" />
   <view class="item-img">
-    <image src="{{itemDetail.img}}" mode="aspectFill"></image>
+    <image wx:if="{{item.photoPath !== ''}}" src="{{'http://10.0.0.3:8080' + item.photoPath}}" mode="aspectFill"></image>
+    <view wx:else class="empty-img">暂无图片</view>
   </view>
   <view class="item-info">
-    <view class="item-price">￥{{itemDetail.price}}</view>
-    <view class="item-name">{{itemDetail.name}}</view>
-    <view class="item-desc">{{itemDetail.desc}}</view>
+    <view class="item-price">￥{{item.price}} / {{item.itemUnit}}</view>
+    <view class="item-name">{{item.name}}</view>
+    <view class="item-desc">{{item.desc}}</view>
   </view>
   <van-goods-action>
     <van-goods-action-button text="加入购物车" type="primary" bind:click="addToCart" />

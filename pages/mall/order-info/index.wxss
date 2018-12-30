@@ -1,0 +1,8 @@
+.wrapper {
+  background-color: #ebebf1;
+}
+
+.section-title {
+  padding: 20px 10px 10px 10px;
+  font-size: 24rpx;
+}

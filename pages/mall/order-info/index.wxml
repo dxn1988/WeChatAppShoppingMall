@@ -1,0 +1,16 @@
+<view class="wrapper">
+  <view class="section-title">配送地址</view>
+  <van-cell-group>
+    <van-cell is-link title="{{addressStr === '' ? '无' : addressStr}}" value="编辑" center="{{true}}" />
+  </van-cell-group>
+  <view class="section-title">商品信息</view>
+  <van-cell-group>
+    <van-cell wx:for="{{orderItems}}" wx:key="{{item.item.id}}" title="{{item.item.name}}" value="￥{{item.item.price}}" label="x {{item.quantity}}" />
+  </van-cell-group>
+  <van-cell-group>
+    <van-cell title="共 {{orderItems.length}} 件商品" value="合计: ￥{{totalPriceStr}}" />
+  </van-cell-group>
+  <van-goods-action>
+    <van-goods-action-button text="确认提交" type="danger" bind:click="submitOrder" />
+  </van-goods-action>
+</view>

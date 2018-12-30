@@ -35,6 +35,7 @@ Page({
             } else {
               wx.removeStorageSync('userInfo')
               wx.removeStorageSync('token')
+              wx.removeStorageSync('uid')
               wx.navigateTo({
                 url: '/pages/auth/index',
               })

@@ -42,7 +42,7 @@ Page({
 
   updateData: function () {
     var vm = this
-    var isEmpty = vm.data.items.length == 0
+    var isEmpty = app.globalData.cart.length === 0
     vm.setData({
       items: app.globalData.cart,
       isEmpty: isEmpty
@@ -55,14 +55,14 @@ Page({
     var items = vm.data.items
     for (var i = 0; i < items.length; i++) {
       if (items[i].id == id) {
-        if (items[i].item.maxUnit > 0 && items[i].count + 1 > items[i].item.maxUnit) {
+        if (items[i].item.maxUnit > 0 && items[i].quantity + 1 > items[i].item.maxUnit) {
           wx.showToast({
             title: '该商品每人限购 ' + items[i].item.maxUnit + ' ' + items[i].item.itemUnit,
             icon: 'none'
           })
           return
         }
-        items[i].count += 1
+        items[i].quantity += 1
       }
     }
     vm.setData({
@@ -76,8 +76,8 @@ Page({
     var items = vm.data.items
     for (var i = 0; i < items.length; i++) {
       if (items[i].id == id) {
-        if (items[i].count > 1) {
-          items[i].count -= 1
+        if (items[i].quantity > 1) {
+          items[i].quantity -= 1
         }
       }
     }
@@ -104,7 +104,7 @@ Page({
     var total = 0.0
     for (var i = 0; i < items.length; i++) {
       var item = items[i]
-      var subTotal = item.count * item.item.price
+      var subTotal = item.quantity * item.item.price
       total += subTotal
     }
     vm.setData({
@@ -125,7 +125,44 @@ Page({
     app.globalData.cart = items
     this.updateTotalPrice()
   },
+  checkInventory() {
+    wx.showLoading({
+      title: '正在检查库存',
+      mask: true
+    })
+    var data = []
+    for (var i = 0; i < this.data.items.length; i++) {
+      var item = this.data.items[i]
+      data.push({
+        id: item.id,
+        name: item.item.name,
+        quantity: item.quantity
+      })
+    }
+    wx.request({
+      url: app.globalData.apiBase + '/item/checkInventory',
+      method: 'POST',
+      data: data,
+      success: res => {
+        wx.hideLoading()
+        if (res.data.status === 0) {
+          wx.navigateTo({
+            url: '/pages/mall/order-info/index',
+          })
+        } else {
+          // wx.showToast({
+          //   title: res.data.message,
+          //   icon: 'none'
+          // })
+          wx.showModal({
+            title: '提示',
+            content: res.data.message
+          })
+        }
+      }
+    })
+  },
   submitOrder: function () {
-
+    this.checkInventory()
   }
 })

@@ -6,7 +6,9 @@
     "pages/account/index/index",
     "pages/logs/logs",
     "pages/mall/item-detail/index",
-    "pages/auth/index"
+    "pages/auth/index",
+    "pages/mall/order-info/index",
+    "components/block/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,5 +42,8 @@
         "text": "我"
       }
     ]
+  },
+  "usingComponents": {
+    "block": "components/block/index"
   }
 }

@@ -9,7 +9,7 @@
   </view>
   <view wx:else>
     <view wx:for="{{items}}" wx:key="{{item.id}}" class="item-row">
-      <van-card num="{{item.count}}" title="{{item.item.name}}" price="{{item.item.price}}">
+      <van-card num="{{item.quantity}}" title="{{item.item.name}}" price="{{item.item.price}}">
         <view slot="thumb">
           <image wx:if="{{item.item.photoPath !== ''}}" src="{{'http://10.0.0.3:8080' + item.item.photoPath}}" class="thumb" thumb-mode="aspectFit"></image>
           <view wx:else class="empty-img"></view>

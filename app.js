@@ -39,7 +39,8 @@ App({
     cart: [],
     allItems: [],
     apiBase: 'http://10.0.0.3:8080/api',
-    hostBase: 'http://10.0.0.3:8080'
+    hostBase: 'http://10.0.0.3:8080',
+    orderAddress: {}
   },
   gotoIndex: function() {
     wx.redirectTo({

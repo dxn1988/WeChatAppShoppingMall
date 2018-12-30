@@ -28,7 +28,7 @@ function addToCart(item) {
   app.globalData.cart.push({
     id: item.id,
     item: item,
-    count: 1
+    quantity: 1
   })
 }
 

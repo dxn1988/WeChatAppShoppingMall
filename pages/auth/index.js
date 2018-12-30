@@ -31,6 +31,7 @@ Page({
             wx.navigateBack()
           } else {
             wx.removeStorageSync('token')
+            wx.removeStorageSync('uid')
             vm.login()
           }
         }
@@ -70,7 +71,9 @@ Page({
         console.log('[register]')
         console.log(res.data)
         if (res.data.status === 0) {
-          wx.setStorageSync('token', res.data.data)
+          wx.setStorageSync('token', res.data.data.token)
+          wx.setStorageSync('uid', res.data.data.uid)
+          console.log('[token] ' + res.data.data.token + '\n[uid] ' + res.data.data.uid)
           wx.navigateBack()
         } else {
           wx.showModal({

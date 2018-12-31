@@ -40,7 +40,7 @@ App({
     allItems: [],
     apiBase: 'http://10.0.0.3:8080/api',
     hostBase: 'http://10.0.0.3:8080',
-    orderAddress: {}
+    orderAddress: null
   },
   gotoIndex: function() {
     wx.redirectTo({

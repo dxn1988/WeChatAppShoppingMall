@@ -8,7 +8,10 @@
     "pages/mall/item-detail/index",
     "pages/auth/index",
     "pages/mall/order-info/index",
-    "components/block/index"
+    "components/block/index",
+    "pages/account/address/index/index",
+    "pages/account/address/add/index",
+    "pages/account/address/edit/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

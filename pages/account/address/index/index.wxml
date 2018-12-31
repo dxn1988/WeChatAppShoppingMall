@@ -1,0 +1,22 @@
+<view>
+  <view wx:if="{{isEmpty}}" class="empty-view">
+    <view class="empty-content">
+      <view>无地址信息</view>
+    </view>
+  </view>
+  <van-cell-group wx:else>
+    <van-cell center="{{true}}" wx:for="{{items}}" wx:key="{{item.id}}" id="{{item.id}}">
+      <view slot="title">
+        <view>{{item.address + ' ' + item.mobile}}</view>
+        <van-tag wx:if="{{item.isDefault === 1}}" type="danger">默认</van-tag>
+      </view>
+      <view>
+        <van-button wx:if="{{showUseButton}}" size="small" id="{{item.id}}" bind:click="selectAddress">使用</van-button>
+        <van-button wx:else size="small" id="{{item.id}}" bind:click="editAddress">编辑</van-button>
+      </view>
+    </van-cell>
+  </van-cell-group>
+  <van-goods-action>
+    <van-goods-action-button text="添加新地址" type="primary" bind:click="addAddress" />
+  </van-goods-action>
+</view>

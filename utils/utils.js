@@ -16,7 +16,8 @@ const formatNumber = n => {
 
 module.exports = {
   formatTime: formatTime,
-  addToCart: addToCart
+  addToCart: addToCart,
+  trim: trim
 }
 
 var app = getApp()
@@ -43,4 +44,8 @@ function itemIsInCart(item) {
     }
   }
   return false
+}
+
+function trim(str) {
+  return str.replace(/^\s+|\s+$/gm, '')
 }

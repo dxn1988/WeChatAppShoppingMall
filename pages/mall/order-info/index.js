@@ -2,7 +2,7 @@ var app = getApp()
 
 Page({
   data: {
-    defaultAddress: {},
+    addressSelected: false,
     addressStr: '',
     orderItems: [],
     totalPrice: 0,
@@ -13,21 +13,41 @@ Page({
       orderItems: app.globalData.cart
     })
     this.getTotalPrice()
-    this.getDefaultAddress()
+    if (app.globalData.orderAddress === null) {
+      this.getDefaultAddress()
+    } else {
+      this.setData({
+        addressStr: app.globalData.orderAddress.address + ' ' + app.globalData.orderAddress.mobile,
+        addressSelected: true
+      })
+    }
   },
   getDefaultAddress: function() {
     let uid = wx.getStorageSync('uid')
     var vm = this
+    wx.showLoading({
+      title: '正在载入',
+      icon: 'none',
+      mask: true
+    })
     wx.request({
       url: app.globalData.apiBase + '/customer/getDefaultAddress?uid=' + uid,
       success: res => {
-        console.log(res)
+        wx.hideLoading()
         let data = res.data
         if (data.status === 0) {
-          vm.setData({
-            'defaultAddress': data.data[0],
-            'addressStr': data.data[0].address + ' ' + data.data[0].mobile
-          })
+          if (data.data.length > 0) {
+            app.globalData.orderAddress = data.data[0]
+            vm.setData({
+              addressStr: data.data[0].address + ' ' + data.data[0].mobile,
+              addressSelected: true
+            })
+          } else {
+            vm.setData({
+              addressStr: '',
+              addressSelected: false
+            })
+          }
         }
       }
     })
@@ -46,10 +66,18 @@ Page({
     })
   },
   submitOrder: function() {
+    if (!this.data.addressSelected) {
+      wx.showToast({
+        title: '请先选择配送地址',
+        icon: 'none'
+      })
+      return
+    }
     let uid = wx.getStorageSync('uid')
     let userInfo = wx.getStorageSync('userInfo')
     let token = wx.getStorageSync('token')
     let items = app.globalData.cart
+    let address = app.globalData.orderAddress
     var vm = this
 
     var orderItems = []
@@ -71,9 +99,9 @@ Page({
       orderSource: 'wechatApp',
       token: token,
       nickname: userInfo.nickName,
-      mobile: this.data.defaultAddress.mobile,
-      address: this.data.defaultAddress.address,
-      complexId: this.data.defaultAddress.complexId,
+      mobile: address.mobile,
+      address: address.address,
+      complexId: address.complexId,
       orderItems: orderItems
     }
     console.log(data)
@@ -113,5 +141,18 @@ Page({
   },
   clearCart: function() {
     app.globalData.cart = []
+  },
+  updateAddress: function() {
+    if (app.globalData.orderAddress !== {}) {
+      this.setData({
+        addressSelected: true,
+        addressStr: app.globalData.orderAddress.address + ' ' + app.globalData.orderAddress.mobile
+      })
+    }
+  },
+  selectAddress: function() {
+    wx.navigateTo({
+      url: '/pages/account/address/index/index?source=order',
+    })
   }
 })

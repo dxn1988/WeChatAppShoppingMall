@@ -1,2 +1,14 @@
-<!--pages/account/index/index.wxml-->
-<text>pages/account/index/index.wxml</text>
+<view>
+  <view class="banner">
+    <view class="row">
+      <image src="{{userInfo.avatarUrl}}" class="avatar" mode="aspectFill"></image>
+    </view>
+    <view class="row">
+      <view class="nickname">{{userInfo.nickName}}</view>
+    </view>
+  </view>
+  <van-cell-group>
+    <van-cell is-link title="我的订单" />
+    <van-cell is-link title="地址管理" url="../address/index/index" />
+  </van-cell-group>
+</view>

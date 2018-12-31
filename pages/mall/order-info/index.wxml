@@ -1,7 +1,11 @@
 <view class="wrapper">
   <view class="section-title">配送地址</view>
   <van-cell-group>
-    <van-cell is-link title="{{addressStr === '' ? '无' : addressStr}}" value="编辑" center="{{true}}" />
+    <van-cell title="{{addressStr === '' ? '无' : addressStr}}" center="{{true}}">
+      <view>
+        <van-button size="small" bind:click="selectAddress">选择</van-button>
+      </view>
+    </van-cell>
   </van-cell-group>
   <view class="section-title">商品信息</view>
   <van-cell-group>
